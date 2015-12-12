@@ -246,7 +246,7 @@ void count_to_three(){
   matrix.setCursor(1, 0);
   matrix.setTextSize(1);
   matrix.setTextColor(matrix.Color444((randomINT()==0)?1:randomINT(), randomINT(), randomINT()));
-  matrix.print('1');
+  matrix.print('3');
   delay(1500);
   matrix.fillRect(0, 0, 8, 8, matrix.Color333(0, 0, 0));
   matrix.setCursor(1, 0);
@@ -256,7 +256,7 @@ void count_to_three(){
   matrix.fillRect(0, 0, 8, 8, matrix.Color333(0, 0, 0));
   matrix.setCursor(1, 0);
   matrix.setTextColor(matrix.Color444((randomINT()==0)?1:randomINT(), randomINT(), randomINT()));
-  matrix.print('3');
+  matrix.print('1');
   delay(1500);
   matrix.fillRect(0, 0, 8, 8, matrix.Color333(0, 0, 0));
 }
@@ -285,14 +285,27 @@ void loop() {
   cleanDisplay();
   
   //prints carlitos LA BALA message
+  int repeat = 0;
   print_string("carlitos", 0, y_block_1, 0);
-  print_string("LA", 0, y_block_3-4, 1);
-  print_string("BALA", 0, y_block_4-1, 1);
-  getDrawingandPrint(BULLET, (matrix.width()/2)+(thick_letter_height/2), y_block_4 - (thick_letter_height/2), matrix.Color444((randomINT()==0)?1:randomINT(), randomINT(), randomINT()));
-  delay(90000);
+  for(repeat = 0; repeat <= 100; repeat++){
+    if(repeat == 25 || repeat == 50 || repeat == 75 || repeat == 100){
+      cleanDisplay();
+      print_string("carlitos", 0, y_block_1, 0);
+    }
+    matrix.fillRect(0, 10, 32, 22, matrix.Color333(0, 0, 0));
+    print_string("LA", 0, y_block_3-4, 1);
+    print_string("BALA", 0, y_block_4-1, 1);
+    getDrawingandPrint(BULLET, (matrix.width()/2)+(thick_letter_height/2), y_block_4 - (thick_letter_height/2), matrix.Color444((randomINT()==0)?1:randomINT(), randomINT(), randomINT()));
+    delay(100);
+  }
+//  print_string("carlitos", 0, y_block_1, 0);
+//  print_string("LA", 0, y_block_3-4, 1);
+//  print_string("BALA", 0, y_block_4-1, 1);
+//  getDrawingandPrint(BULLET, (matrix.width()/2)+(thick_letter_height/2), y_block_4 - (thick_letter_height/2), matrix.Color444((randomINT()==0)?1:randomINT(), randomINT(), randomINT()));
+//  delay(90000);
   
   int balls_bounce = 0;
-  for(balls_bounce = 0; balls_bounce < 300; balls_bounce++){
+  for(balls_bounce = 0; balls_bounce < 1000; balls_bounce++){
     cleanDisplay();
     jumping_ballss();
   }
